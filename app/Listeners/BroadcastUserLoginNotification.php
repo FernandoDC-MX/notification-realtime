@@ -28,6 +28,6 @@ class BroadcastUserLoginNotification
     public function handle(Login $event)
     {
         // Calling the UserSessionChanged event when the user Login on the system.
-        broadcast(new UserSessionChanged("{$event->user->name} is online","success"));
+        broadcast(new UserSessionChanged("{$event->user->name} is online",'success'));
     }
 }

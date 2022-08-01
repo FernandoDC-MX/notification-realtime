@@ -28,6 +28,6 @@ class BroadcastUserLogoutNotification
     public function handle(Logout $event)
     {
         // Calling the UserSessionChanged event when the user logout on the system.
-        broadcast(new UserSessionChanged("{$event->user->name} is offline","danger"));
+        broadcast(new UserSessionChanged("{$event->user->name} is offline",'danger'));
     }
 }
