@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('users', 'App\Http\Controllers\Api\UserController');
+
+Route::apiResource('notifications', 'App\Http\Controllers\Api\NotificationController');
