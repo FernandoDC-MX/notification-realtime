@@ -15,7 +15,7 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $notifications = Notification::orderBy('id', 'DESC')->get();
+        $notifications = Notification::orderBy('id', 'DESC')->limit(3)->get();
 
         return $notifications;
     }

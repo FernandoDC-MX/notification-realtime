@@ -56,4 +56,35 @@
                 });
             } )
     </script>
+    <script>
+        Echo.channel('notifications')
+            .listen('NotificationCreated', (event) => {
+                const notificationsElement = document.getElementById('notifications');
+
+                let elementParent = document.createElement('div');
+                    elementParent.setAttribute('id', event.notification.id)
+                    elementParent.classList.add('notification')
+
+                    let elementHeader = document.createElement('div');
+                    elementHeader.classList.add('notification-header','d-flex','flex-row', 'justify-content-between');
+
+                    elementHeader.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                        </svg>
+                        <small>${event.notification.created_at}</small>
+                    `
+
+                    elementParent.appendChild(elementHeader);
+
+                    let elementBody = document.createElement('div');
+                    elementBody.classList.add('notification-body')
+                    elementBody.innerText = event.notification.message
+
+                    elementParent.appendChild(elementBody);
+                    elementParent.style.animation = 'fadeIn 0.5s ease-in-out forwards';
+
+                    notificationsElement.insertBefore(elementParent, notificationsElement.firstChild);
+            })
+    </script>
 @endpush
