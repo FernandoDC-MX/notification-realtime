@@ -1,7 +1,7 @@
 require('./bootstrap');
 
 
-Echo.channel('notifications')
+Echo.private('notifications')
     .listen('UserSessionChanged', (event) => {
         const notificationElement = document.getElementById('notification');
 
@@ -9,8 +9,6 @@ Echo.channel('notifications')
         notificationElement.classList.remove('invisible');
         notificationElement.classList.remove('alert-success');
         notificationElement.classList.remove('alert-danger');
-
-        console.log(event);
 
         notificationElement.classList.add('alert-' + event.type);
     })
