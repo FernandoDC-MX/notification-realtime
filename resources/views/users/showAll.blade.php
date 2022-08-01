@@ -37,4 +37,26 @@
                 });
             } )
     </script>
+    <script>
+        Echo.channel('users')
+            .listen('UserCreated', (event) => {
+                const usersElement = document.getElementById('users');
+
+                let element = document.createElement('li');
+
+                element.setAttribute('id', event.user.id)
+                element.innerText = event.user.name;
+
+                usersElement.appendChild(element);
+            })
+            .listen('UserUpdated', (event) => {
+                let element = document.getElementById(event.user.id);
+
+                element.innerText = event.user.name;
+            })
+            .listen('UserDeleted', (event) => {
+                let element = document.getElementById(event.user.id);
+                element.parentNode.removeChild(element);
+            })
+    </script>
 @endpush
